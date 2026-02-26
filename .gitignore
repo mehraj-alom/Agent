@@ -1,0 +1,13 @@
+.env
+env.txt
+*.env
+.venv
+/venv
+.venv/
+venv/
+__pycache__/
+.env
+env.txt
+env.txt
+.env
+*.env
