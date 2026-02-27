@@ -2,6 +2,12 @@ import streamlit as st
 import sys
 from pathlib import Path
 from datetime import date
+from dotenv import load_dotenv
+
+# Load .env BEFORE importing reasoning_agent (which imports LangChain)
+# so that LANGCHAIN_TRACING_V2 and friends are available for LangSmith tracing.
+env_path = Path(__file__).parent / "reasoning_agent" / ".env"
+load_dotenv(env_path, override=True)
 
 # Add the reasoning_agent directory to path
 sys.path.insert(0, str(Path(__file__).parent))

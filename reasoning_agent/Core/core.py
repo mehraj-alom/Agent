@@ -1,5 +1,20 @@
 from __future__ import annotations
 
+# ── Load .env BEFORE any LangChain / LangGraph imports ──────────────
+# LangSmith tracing reads LANGCHAIN_TRACING_V2, LANGCHAIN_API_KEY, etc.
+# from os.environ at import time, so dotenv must run first.
+from dotenv import load_dotenv
+from pathlib import Path
+import os
+
+env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(env_path, override=True)
+
+parent_env_path = Path(__file__).parent.parent.parent / ".env"
+if parent_env_path.exists():
+    load_dotenv(parent_env_path, override=True)
+# ─────────────────────────────────────────────────────────────────────
+
 from typing import Any, Dict, List, Optional, Literal
 from pydantic import BaseModel, Field
 from langgraph.graph import StateGraph ,START , END
@@ -10,18 +25,6 @@ import operator
 from reasoning_agent.Core.core_models import AgentState, Plan, Task , EvidenceItem , EvidencePack, RouterDecision , GlobalImagePlan , ImageSpec
 from typing import TypedDict
 from langchain_tavily import TavilySearch
-from dotenv import load_dotenv
-from pathlib import Path
-import os
-
-
-env_path = Path(__file__).parent.parent / ".env"
-load_dotenv(env_path)
-
-
-parent_env_path = Path(__file__).parent.parent.parent / ".env"
-if parent_env_path.exists():
-    load_dotenv(parent_env_path)
 
 import json
 from datetime import date, datetime , timedelta
