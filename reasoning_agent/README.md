@@ -29,7 +29,7 @@ Reasoning Agent is an intelligent content generation system designed to produce 
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/mehraj-alom/Agent
    cd reasoning_agent
    ```
 
